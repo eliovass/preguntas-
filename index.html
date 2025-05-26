@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle de Preguntas Moderno</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .question {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #f9f9f9;
+        }
+        .question p {
+            margin: 0 0 10px;
+            font-weight: 500;
+            color: #444;
+        }
+        .options label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+            color: #555;
+        }
+        .options input {
+            margin-right: 10px;
+        }
+        .hint {
+            font-size: 0.9em;
+            color: #888;
+            margin-top: 10px;
+            display: none;
+        }
+        .hint-btn {
+            background: #ffcc00;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .hint-btn:hover {
+            background: #e6b800;
+        }
+        #submit-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        #submit-btn:hover {
+            background: #218838;
+        }
+        #result {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        #result h3 {
+            margin: 0;
+            color: #333;
+        }
+        #result p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        #result span {
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="quiz-container">
+        <h2>Puzzle de Preguntas: Codificadores y Decodificadores</h2>
+        <div class="question">
+            <p>1. ¿Qué hace un codificador con 7 entradas y 3 salidas?</p>
+            <div class="options">
+                <label><input type="radio" name="q1" value="a"> a) Convierte un código binario a texto</label>
+                <label><input type="radio" name="q1" value="b"> b) Convierte una entrada activa en un código binario</label>
+                <label><input type="radio" name="q1" value="c"> c) Genera una señal analógica</label>
+            </div>
+            <button class="hint-btn" onclick="showHint(1)">Mostrar Pista</button>
+            <div class="hint" id="hint1">Pista: Piensa en cómo se representa una entrada activa en formato binario.</div>
+        </div>
+        <div class="question">
+            <p>2. ¿Qué hace un decodificador con 3 entradas y 7 salidas?</p>
+            <div class="options">
+                <label><input type="radio" name="q2" value="a"> a) Comprime datos</label>
+                <label><input type="radio" name="q2" value="b"> b) Activa una salida específica según el código binario</label>
+                <label><input type="radio" name="q2" value="c"> c) Genera un código binario</label>
+            </div>
+            <button class="hint-btn" onclick="showHint(2)">Mostrar Pista</button>
+            <div class="hint" id="hint2">Pista: Un decodificador hace lo opuesto a un codificador.</div>
+        </div>
+        <div class="question">
+            <p>3. ¿Cuántas combinaciones posibles hay con 3 bits?</p>
+            <div class="options">
+                <label><input type="radio" name="q3" value="a"> a) 6</label>
+                <label><input type="radio" name="q3" value="b"> b) 7</label>
+                <label><input type="radio" name="q3" value="c"> c) 8</label>
+            </div>
+            <button class="hint-btn" onclick="showHint(3)">Mostrar Pista</button>
+            <div class="hint" id="hint3">Pista: Usa la fórmula 2³ para calcular las combinaciones.</div>
+        </div>
+        <div class="question">
+            <p>4. ¿Qué sucede si ninguna entrada está activa en un codificador?</p>
+            <div class="options">
+                <label><input type="radio" name="q4" value="a"> a) Genera un código binario de salida por defecto</label>
+                <label><input type="radio" name="q4" value="b"> b) No genera salida</label>
+                <label><input type="radio" name="q4" value="c"> c) Activa todas las salidas</label>
+            </div>
+            <button class="hint-btn" onclick="showHint(4)">Mostrar Pista</button>
+            <div class="hint" id="hint4">Pista: Un codificador suele esperar al menos una entrada activa.</div>
+        </div>
+        <div class="question">
+            <p>5. ¿En qué área se usan comúnmente los codificadores?</p>
+            <div class="options">
+                <label><input type="radio" name="q5" value="a"> a) Cocina</label>
+                <label><input type="radio" name="q5" value="b"> b) Sistemas digitales</label>
+                <label><input type="radio" name="q5" value="c"> c) Pintura</label>
+            </div>
+            <button class="hint-btn" onclick="showHint(5)">Mostrar Pista</button>
+            <div class="hint" id="hint5">Pista: Piensa en aplicaciones electrónicas o informáticas.</div>
+        </div>
+        <button id="submit-btn" onclick="checkAnswers()">Finalizar y Ver Calificación</button>
+        <div id="result">
+            <h3>¡Tu Resultado!</h3>
+            <p>Puntuación: <span id="score"></span> de 5</p>
+            <p>Porcentaje: <span id="percentage"></span>%</p>
+            <p id="message"></p>
+        </div>
+    </div>
+
+    <script>
+        function showHint(questionNumber) {
+            const hint = document.getElementById(`hint${questionNumber}`);
+            hint.style.display = hint.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function checkAnswers() {
+            const answers = {
+                q1: 'b', // Convierte una entrada activa en un código binario
+                q2: 'b', // Activa una salida específica según el código binario
+                q3: 'c', // 8 combinaciones (2³)
+                q4: 'a', // Genera un código binario por defecto (depende del diseño, pero común)
+                q5: 'b'  // Sistemas digitales
+            };
+            let score = 0;
+            const total = 5;
+
+            for (let q in answers) {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                if (selected && selected.value === answers[q]) {
+                    score++;
+                }
+            }
+
+            const percentage = (score / total * 100).toFixed(0);
+            document.getElementById('score').textContent = score;
+            document.getElementById('percentage').textContent = percentage;
+            const message = document.getElementById('message');
+            if (score === total) {
+                message.textContent = '¡Excelente! Resolviste todo correctamente.';
+                message.style.color = 'green';
+            } else if (score >= 3) {
+                message.textContent = '¡Bien hecho! Estás cerca de la perfección.';
+                message.style.color = 'blue';
+            } else {
+                message.textContent = 'Necesitas practicar más. ¡Inténtalo de nuevo!';
+                message.style.color = 'red';
+            }
+
+            document.getElementById('quiz-container').querySelectorAll('.question, #submit-btn').forEach(el => el.style.display = 'none');
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
